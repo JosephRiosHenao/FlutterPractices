@@ -40,39 +40,39 @@ class ContadorPageState extends State<ContadorPage> {
           width: 30,
         ),
         FloatingActionButton.extended(
-          onPressed: () {
-            _cont++;
-            print("$_cont");
-            setState(() {});
-          },
+          onPressed: () => _add(),
           backgroundColor: Color.fromRGBO(255, 87, 51, 1),
           icon: Icon(Icons.add),
           label: Text('Add'),
         ),
         Expanded(child: SizedBox()),
         FloatingActionButton.extended(
-          onPressed: () {
-            _cont = 0;
-            print("$_cont");
-            setState(() {});
-          },
+          onPressed: () => _reset(),
           backgroundColor: Color.fromRGBO(255, 87, 51, 1),
           icon: Icon(Icons.settings_backup_restore_outlined),
-          label: Text('Restart'),
+          label: Text('Reset'),
         ),
         Expanded(child: SizedBox()),
         FloatingActionButton.extended(
-          onPressed: () {
-            _cont--;
-            print("$_cont");
-            setState(() {});
-          },
+          onPressed: () => _remove(),
           backgroundColor: Color.fromRGBO(255, 87, 51, 1),
           icon: Icon(Icons.remove),
-          label: Text('Delete'),
+          label: Text('Remove'),
         ),
       ],
       mainAxisAlignment: MainAxisAlignment.center,
     );
+  }
+
+  void _add() {
+    setState(() => _cont++);
+  }
+
+  void _remove() {
+    setState(() => _cont--);
+  }
+
+  void _reset() {
+    setState(() => _cont = 0);
   }
 }
