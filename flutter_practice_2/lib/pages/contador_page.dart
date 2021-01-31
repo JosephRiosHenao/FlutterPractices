@@ -36,6 +36,9 @@ class ContadorPageState extends State<ContadorPage> {
   Widget _createButtons() {
     return Row(
       children: [
+        SizedBox(
+          width: 30,
+        ),
         FloatingActionButton.extended(
           onPressed: () {
             _cont++;
@@ -46,6 +49,7 @@ class ContadorPageState extends State<ContadorPage> {
           icon: Icon(Icons.add),
           label: Text('Add'),
         ),
+        Expanded(child: SizedBox()),
         FloatingActionButton.extended(
           onPressed: () {
             _cont = 0;
@@ -56,6 +60,7 @@ class ContadorPageState extends State<ContadorPage> {
           icon: Icon(Icons.settings_backup_restore_outlined),
           label: Text('Restart'),
         ),
+        Expanded(child: SizedBox()),
         FloatingActionButton.extended(
           onPressed: () {
             _cont--;
