@@ -7,12 +7,6 @@ class back_gradient extends StatelessWidget {
     return new Stack(
       children: <Widget>[
         new gradient(),
-        new Positioned(
-            bottom: 0.0,
-            child: new Container(
-                width: MediaQuery.of(context).size.width,
-                height: 225.0,
-                color: Colors.white))
       ],
     );
   }
