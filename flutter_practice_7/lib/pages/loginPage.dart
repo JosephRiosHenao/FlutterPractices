@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_7/widgets/inputWidget.dart';
 
-class loginPage extends StatelessWidget {
-  const loginPage({Key key}) : super(key: key);
-
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,6 +11,7 @@ class loginPage extends StatelessWidget {
             child: Stack(
           children: [
             _gradient(context),
+            _content(context),
           ],
         )),
       ),
@@ -26,6 +26,25 @@ class loginPage extends StatelessWidget {
         end: Alignment.bottomCenter,
         colors: [const Color(0xffee0000), const Color(0xffeeee00)],
       )),
+    );
+  }
+
+  Widget _content(BuildContext context) {
+    return Column(
+      children: [
+        InputWidget(
+          textIs: 'Nombre',
+          typeIs: 'a',
+        ),
+        InputWidget(
+          textIs: 'Usuario',
+          typeIs: 'a',
+        ),
+        InputWidget(
+          textIs: 'Contraseña',
+          typeIs: 'a',
+        ),
+      ],
     );
   }
 }
