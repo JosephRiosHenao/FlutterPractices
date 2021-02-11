@@ -11,7 +11,6 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _content(context),
-              _customPaintBuilder(context),
             ],
           ),
         ),
@@ -31,56 +30,35 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _content(BuildContext context) {
+    final _separationSize = 20.0;
     return Column(
       children: [
         InputWidget(
-          textIs: 'Nombre',
+          textIs: 'NODO',
           typeIs: 'a',
         ),
-        InputWidget(
-          textIs: 'Usuario',
-          typeIs: 'a',
+        SizedBox(
+          height: _separationSize,
         ),
         InputWidget(
-          textIs: 'Contraseña',
+          textIs: 'DIRECCIÓN',
+          typeIs: 'a',
+        ),
+        SizedBox(
+          height: _separationSize,
+        ),
+        InputWidget(
+          textIs: 'ALTURA',
+          typeIs: 'a',
+        ),
+        SizedBox(
+          height: _separationSize,
+        ),
+        InputWidget(
+          textIs: 'CARGA',
           typeIs: 'a',
         ),
       ],
     );
   }
-
-  Widget _customPaintBuilder(BuildContext context) {
-    return Container(
-      height: 260,
-      width: 260,
-      color: Colors.black12,
-      child: CustomPaint(
-        painter: TextFieldPainter(),
-      ),
-    );
-  }
-}
-
-class TextFieldPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = new Paint()
-      ..color = Colors.blueAccent
-      ..strokeWidth = 5
-      ..style = PaintingStyle.stroke;
-
-    final path = new Path()
-      ..moveTo(30, 0)
-      ..lineTo(230, 0)
-      ..lineTo(260, 20)
-      ..lineTo(230, 40)
-      ..lineTo(30, 40)
-      ..lineTo(0, 20)
-      ..lineTo(30, 0);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(TextFieldPainter oldDelegate) => true;
 }
