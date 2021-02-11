@@ -4,18 +4,19 @@ import 'package:flutter_practice_7/widgets/inputWidget.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Scaffold(
+    return Scaffold(
       body: Center(
         child: Container(
-            child: Stack(
-          children: [
-            _gradient(context),
-            _content(context),
-          ],
-        )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _content(context),
+              _customPaintBuilder(context),
+            ],
+          ),
+        ),
       ),
-    ));
+    );
   }
 
   Widget _gradient(BuildContext context) {
@@ -47,4 +48,39 @@ class LoginPage extends StatelessWidget {
       ],
     );
   }
+
+  Widget _customPaintBuilder(BuildContext context) {
+    return Container(
+      height: 260,
+      width: 260,
+      color: Colors.black12,
+      child: CustomPaint(
+        painter: TextFieldPainter(),
+      ),
+    );
+  }
+}
+
+class TextFieldPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = new Paint()
+      ..color = Colors.blueAccent
+      ..strokeWidth = 5
+      ..style = PaintingStyle.stroke;
+
+    final path = new Path()
+      ..moveTo(30, 0)
+      ..lineTo(230, 0)
+      ..lineTo(260, 20)
+      ..lineTo(230, 40)
+      ..lineTo(30, 40)
+      ..lineTo(0, 20)
+      ..lineTo(30, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(TextFieldPainter oldDelegate) => true;
 }

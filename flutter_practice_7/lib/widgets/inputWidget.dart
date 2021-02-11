@@ -9,16 +9,21 @@ class InputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      textAlign: TextAlign.center,
-      decoration: InputDecoration(
-        hintText: '$textIs',
-        hintStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-          
+    return SizedBox(
+      width: 250,
+      child: TextField(
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+          labelText: '$textIs',
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+          ),
+          filled: true,
+          fillColor: Colors.white,
         ),
-        filled: true,
-        fillColor: Colors.white,
       ),
     );
   }
