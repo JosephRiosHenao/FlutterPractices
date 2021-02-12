@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice_7/pages/loginPage.dart';
 
 class InputWidget extends StatelessWidget {
   final typeIs;
@@ -18,22 +17,6 @@ class InputWidget extends StatelessWidget {
         ],
       ),
     );
-    /*
-                        SizedBox(
-                          width: 230,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                              labelText: '$textIs',
-                              labelStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              filled: true,
-                              fillColor: Colors.white,
-                            ),
-                          ),
-                        );
-                        */
   }
 
   Widget _customPaintBuilder(BuildContext context) {
@@ -51,6 +34,7 @@ class InputWidget extends StatelessWidget {
       width: 200,
       height: 30,
       child: TextField(
+        cursorColor: Colors.black,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           hintText: '$textIs',
@@ -66,7 +50,7 @@ class TextFieldPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = new Paint()
-      ..color = Colors.blueAccent
+      ..color = Colors.white
       ..strokeWidth = 5
       ..style = PaintingStyle.fill;
 

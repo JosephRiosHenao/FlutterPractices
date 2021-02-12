@@ -5,15 +5,24 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _content(context),
-            ],
-          ),
-        ),
+      body: Stack(
+        children: [
+          _gradient(context),
+          _layoutDesign(context),
+        ],
+      ),
+    );
+  }
+
+  Container _layoutDesign(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _titlePoste(context),
+          _content(context),
+        ],
       ),
     );
   }
@@ -21,11 +30,12 @@ class LoginPage extends StatelessWidget {
   Widget _gradient(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [const Color(0xffee0000), const Color(0xffeeee00)],
-      )),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [const Color(0xffee0000), const Color(0xffeeee00)],
+        ),
+      ),
     );
   }
 
@@ -59,6 +69,17 @@ class LoginPage extends StatelessWidget {
           typeIs: 'a',
         ),
       ],
+    );
+  }
+
+  Widget _titlePoste(BuildContext context) {
+    return Text(
+      'POSTE',
+      style: TextStyle(
+          color: Colors.white,
+          fontFamily: 'SegoeUI',
+          fontSize: 45,
+          fontWeight: FontWeight.w300),
     );
   }
 }
