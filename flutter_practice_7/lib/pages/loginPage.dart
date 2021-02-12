@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_7/widgets/inputWidget.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  LoginPage({Key key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool checkBoxMT = false;
+  bool checkBoxBT = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +31,14 @@ class LoginPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _titlePoste(context),
+          SizedBox(height: 30),
           _content(context),
+          SizedBox(height: 30),
+          _gpsWidget(context),
+          SizedBox(height: 30),
+          _radioButtons(context),
+          SizedBox(height: 10),
+          _nextButtom(context),
         ],
       ),
     );
@@ -33,14 +50,15 @@ class LoginPage extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [const Color(0xffee0000), const Color(0xffeeee00)],
+          stops: [0.2, 0.8],
+          colors: [const Color(0xfffd8348), const Color(0xfffdc45b)],
         ),
       ),
     );
   }
 
   Widget _content(BuildContext context) {
-    final _separationSize = 20.0;
+    final _separationSize = 30.0;
     return Column(
       children: [
         InputWidget(
@@ -81,5 +99,51 @@ class LoginPage extends StatelessWidget {
           fontSize: 45,
           fontWeight: FontWeight.w300),
     );
+  }
+
+  Widget _gpsWidget(BuildContext context) {
+    return Icon(
+      Icons.place,
+      color: Colors.white,
+      size: 70,
+    );
+  }
+
+  Widget _radioButtons(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            Text("MT"),
+            Checkbox(
+              value: checkBoxMT,
+              onChanged: (value) {
+                setState(() {
+                  checkBoxMT = value;
+                });
+              },
+            ),
+          ],
+        ),
+        Column(
+          children: [
+            Text("BT"),
+            Checkbox(
+              value: checkBoxBT,
+              onChanged: (value) {
+                setState(() {
+                  checkBoxBT = value;
+                });
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _nextButtom(BuildContext context) {
+    return Text('a');
   }
 }
