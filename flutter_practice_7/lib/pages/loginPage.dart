@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_7/widgets/inputWidget.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:circular_check_box/circular_check_box.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -39,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
           _gpsWidget(context),
           SizedBox(height: 30),
           _radioButtons(context),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
           _nextButtom(context),
         ],
       ),
@@ -167,6 +166,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _nextButtom(BuildContext context) {
-    return Text('a');
+    // ignore: deprecated_member_use
+    return OutlineButton(
+      shape: StadiumBorder(),
+      textColor: Colors.white,
+      child: Text('SIGUIENTE'),
+      padding: EdgeInsets.fromLTRB(50, 20, 50, 20),
+      borderSide:
+          BorderSide(color: Colors.white, style: BorderStyle.solid, width: 4),
+      onPressed: () {},
+    );
   }
 }
