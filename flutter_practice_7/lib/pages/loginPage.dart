@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_7/widgets/inputWidget.dart';
+import 'package:getwidget/getwidget.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -115,8 +116,18 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         Column(
           children: [
-            Text("MT"),
-            Checkbox(
+            Text(
+              "MT",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+            GFCheckbox(
+              type: GFCheckboxType.circle,
+              inactiveBgColor: GFColors.TRANSPARENT,
+              inactiveBorderColor: GFColors.WHITE,
+              activeBgColor: GFColors.WHITE,
               value: checkBoxMT,
               onChanged: (value) {
                 setState(() {
@@ -126,9 +137,16 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ],
         ),
+        SizedBox(width: 50),
         Column(
           children: [
-            Text("BT"),
+            Text(
+              "BT",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
             Checkbox(
               value: checkBoxBT,
               onChanged: (value) {
