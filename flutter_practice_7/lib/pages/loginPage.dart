@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_7/widgets/inputWidget.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:circular_check_box/circular_check_box.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -147,7 +148,11 @@ class _LoginPageState extends State<LoginPage> {
                   fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
-            Checkbox(
+            GFCheckbox(
+              type: GFCheckboxType.circle,
+              inactiveBgColor: GFColors.TRANSPARENT,
+              inactiveBorderColor: GFColors.WHITE,
+              activeBgColor: GFColors.WHITE,
               value: checkBoxBT,
               onChanged: (value) {
                 setState(() {
