@@ -19,6 +19,7 @@ class LocationApp extends StatefulWidget {
 }
 
 class _LocationAppState extends State<LocationApp> {
+  var locationMessage = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +43,24 @@ class _LocationAppState extends State<LocationApp> {
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text(locationMessage),
+            SizedBox(
+              height: 20.0,
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Text(
+                "Click me!",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Colors.blue,
+              splashColor: Colors.white,
+              minWidth: 100,
+              height: 50,
             ),
           ],
         ),
