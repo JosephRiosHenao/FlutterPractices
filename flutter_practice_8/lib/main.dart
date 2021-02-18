@@ -20,6 +20,17 @@ class LocationApp extends StatefulWidget {
 
 class _LocationAppState extends State<LocationApp> {
   var locationMessage = "";
+
+  void getCurrentLocation() async {
+    var position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    print(position);
+    setState(() {
+      locationMessage =
+          "$position.latitude, $position.longitude, $position.altitude";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,12 +58,17 @@ class _LocationAppState extends State<LocationApp> {
             SizedBox(
               height: 20.0,
             ),
-            Text(locationMessage),
+            Text(
+              "$locationMessage",
+              textAlign: TextAlign.center,
+            ),
             SizedBox(
               height: 20.0,
             ),
             FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                getCurrentLocation();
+              },
               child: Text(
                 "Click me!",
                 style: TextStyle(color: Colors.white),
