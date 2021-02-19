@@ -27,7 +27,7 @@ class _LocationAppState extends State<LocationApp> {
     print(position);
     setState(() {
       locationMessage =
-          "$position.latitude, $position.longitude, $position.altitude";
+          "$position.latitude\n$position.longitude\n$position.altitude";
     });
   }
 
