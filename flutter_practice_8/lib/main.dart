@@ -20,14 +20,26 @@ class LocationApp extends StatefulWidget {
 
 class _LocationAppState extends State<LocationApp> {
   var locationMessage = "";
+  Position _currentPosition;
 
-  void getCurrentLocation() async {
+  /*void getCurrentLocation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     print(position);
     setState(() {
       locationMessage =
           "$position.latitude\n$position.longitude\n$position.altitude";
+    });
+  }*/
+
+  _getCurrentLocation() {
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+    }).catchError((e) {
+      print(e);
     });
   }
 
@@ -58,16 +70,18 @@ class _LocationAppState extends State<LocationApp> {
             SizedBox(
               height: 20.0,
             ),
-            Text(
-              "$locationMessage",
-              textAlign: TextAlign.center,
-            ),
+            if (_currentPosition != null)
+              Text(
+                "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}",
+                textAlign: TextAlign.center,
+              ),
             SizedBox(
               height: 20.0,
             ),
             FlatButton(
               onPressed: () {
-                getCurrentLocation();
+                //getCurrentLocation();
+                _getCurrentLocation();
               },
               child: Text(
                 "Click me!",
