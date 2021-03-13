@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class InputWidget extends StatelessWidget {
+class InputWidget extends StatefulWidget {
   final typeIs;
   final textIs;
+  String controllerText;
+  InputWidget({this.textIs, this.typeIs, this.controllerText});
 
-  InputWidget({this.textIs, this.typeIs});
+  @override
+  _InputWidgetState createState() => _InputWidgetState();
+}
+
+class _InputWidgetState extends State<InputWidget> {
+  get textIs => null;
 
   @override
   Widget build(BuildContext context) {

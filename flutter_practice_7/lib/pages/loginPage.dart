@@ -170,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
     return OutlineButton(
       shape: StadiumBorder(),
       textColor: Colors.white,
-      child: Text('SIGUIENTE'),
+      child: Text('ENVIAR'),
       padding: EdgeInsets.fromLTRB(50, 20, 50, 20),
       borderSide:
           BorderSide(color: Colors.white, style: BorderStyle.solid, width: 4),
