@@ -13,6 +13,16 @@ class _LoginPageState extends State<LoginPage> {
   bool checkBoxMT = false;
   bool checkBoxBT = false;
 
+  String _NodoText = "";
+  String _DireccionText = "";
+  String _AlturaText = "";
+  String _CargaText = "";
+
+  InputWidget NodoWidget = new InputWidget(
+    textIs: 'NODO',
+    typeIs: 'a',
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,17 +70,15 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _content(BuildContext context) {
     final _separationSize = 30.0;
+
     return Column(
       children: [
-        InputWidget(
-          textIs: 'NODO',
-          typeIs: 'a',
-        ),
+        NodoWidget,
         SizedBox(
           height: _separationSize,
         ),
         InputWidget(
-          textIs: 'DIRECCIÓN',
+          textIs: 'DIRECCIÓNa',
           typeIs: 'a',
         ),
         SizedBox(
@@ -166,6 +174,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _nextButtom(BuildContext context) {
+    String Valor = "";
     // ignore: deprecated_member_use
     return OutlineButton(
       shape: StadiumBorder(),
@@ -174,7 +183,9 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.fromLTRB(50, 20, 50, 20),
       borderSide:
           BorderSide(color: Colors.white, style: BorderStyle.solid, width: 4),
-      onPressed: () {},
+      onPressed: () {
+        print(Valor);
+      },
     );
   }
 }

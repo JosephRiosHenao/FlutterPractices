@@ -3,15 +3,37 @@ import 'package:flutter/material.dart';
 class InputWidget extends StatefulWidget {
   final typeIs;
   final textIs;
-  String controllerText;
-  InputWidget({this.textIs, this.typeIs, this.controllerText});
+  InputWidget({this.textIs, this.typeIs});
+
+  void Valor() {
+    _InputWidgetState().UpdateValue();
+    print(_InputWidgetState()._controllerText.text);
+  }
 
   @override
   _InputWidgetState createState() => _InputWidgetState();
 }
 
 class _InputWidgetState extends State<InputWidget> {
-  get textIs => null;
+  TextEditingController _controllerText = new TextEditingController();
+  String Valor = "efe";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controllerText.dispose();
+    super.dispose();
+  }
+
+  void UpdateValue() {
+    print("$_controllerText.text");
+    print(Valor);
+    print("$Valor");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +63,35 @@ class _InputWidgetState extends State<InputWidget> {
       width: 200,
       height: 30,
       child: TextField(
+        controller: _controllerText,
+        onSubmitted: (String value) async {
+          await showDialog<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Thanks!'),
+                content: Text(
+                    'You typed "$_controllerText.text", which has length ${value.characters.length}.'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        Valor = "$_controllerText.text";
+                      });
+                      print("$value");
+                      Navigator.pop(context);
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
-          hintText: '$textIs',
+          hintText: this.widget.textIs,
           hintStyle: TextStyle(fontWeight: FontWeight.bold),
           border: InputBorder.none,
         ),
