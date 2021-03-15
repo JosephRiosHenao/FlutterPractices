@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 class InputWidget extends StatefulWidget {
   final typeIs;
   final textIs;
+  String Valor = "";
   InputWidget({this.textIs, this.typeIs});
 
-  void Imprimir() => _InputWidgetState().imprimir();
   @override
   _InputWidgetState createState() => _InputWidgetState();
 }
 
 class _InputWidgetState extends State<InputWidget> {
   TextEditingController _controllerText = new TextEditingController();
-  Information information = new Information();
 
   @override
   void initState() {
@@ -56,8 +55,7 @@ class _InputWidgetState extends State<InputWidget> {
         controller: _controllerText,
         onChanged: (value) {
           setState(() {
-            information.setTextValue(value);
-            print(information.getTextValue());
+            this.widget.Valor = value;
           });
         },
         cursorColor: Colors.black,
@@ -69,11 +67,6 @@ class _InputWidgetState extends State<InputWidget> {
         ),
       ),
     );
-  }
-
-  imprimir() {
-    print(information.getTextValue());
-    print(information.textValue);
   }
 }
 
@@ -99,15 +92,4 @@ class TextFieldPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(TextFieldPainter oldDelegate) => true;
-}
-
-class Information {
-  String textValue = "";
-  void setTextValue(String value) {
-    this.textValue = value;
-  }
-
-  String getTextValue() {
-    return this.textValue;
-  }
 }

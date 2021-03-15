@@ -13,13 +13,28 @@ class _LoginPageState extends State<LoginPage> {
   bool checkBoxMT = false;
   bool checkBoxBT = false;
 
-  String _NodoText = "";
-  String _DireccionText = "";
-  String _AlturaText = "";
-  String _CargaText = "";
+  String NodoText = "";
+  String DireccionText = "";
+  String AlturaText = "";
+  String CargaText = "";
 
-  InputWidget NodoWidget = new InputWidget(
+  InputWidget _NodoWidget = new InputWidget(
     textIs: 'NODO',
+    typeIs: 'a',
+  );
+
+  InputWidget _DireccionWidget = new InputWidget(
+    textIs: 'DIRECCIÓN',
+    typeIs: 'a',
+  );
+
+  InputWidget _AlturaWidget = new InputWidget(
+    textIs: 'ALTURA',
+    typeIs: 'a',
+  );
+
+  InputWidget _CargaWidget = new InputWidget(
+    textIs: 'CARGA',
     typeIs: 'a',
   );
 
@@ -77,28 +92,19 @@ class _LoginPageState extends State<LoginPage> {
 
     return Column(
       children: [
-        NodoWidget,
+        _NodoWidget,
         SizedBox(
           height: _separationSize,
         ),
-        InputWidget(
-          textIs: 'DIRECCIÓNa',
-          typeIs: 'a',
-        ),
+        _DireccionWidget,
         SizedBox(
           height: _separationSize,
         ),
-        InputWidget(
-          textIs: 'ALTURA',
-          typeIs: 'a',
-        ),
+        _AlturaWidget,
         SizedBox(
           height: _separationSize,
         ),
-        InputWidget(
-          textIs: 'CARGA',
-          typeIs: 'a',
-        ),
+        _CargaWidget,
       ],
     );
   }
@@ -187,7 +193,10 @@ class _LoginPageState extends State<LoginPage> {
       borderSide:
           BorderSide(color: Colors.white, style: BorderStyle.solid, width: 4),
       onPressed: () {
-        NodoWidget.Imprimir();
+        setState(() {
+          NodoText = _NodoWidget.Valor;
+          print(_NodoWidget.Valor);
+        });
       },
     );
   }
