@@ -26,12 +26,16 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          _gradient(context),
-          _layoutDesign(context),
-        ],
-      ),
+      body: _buildLayers(context),
+    );
+  }
+
+  Stack _buildLayers(BuildContext context) {
+    return Stack(
+      children: [
+        _gradient(context),
+        _layoutDesign(context),
+      ],
     );
   }
 
@@ -174,7 +178,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _nextButtom(BuildContext context) {
-    String Valor = "";
     // ignore: deprecated_member_use
     return OutlineButton(
       shape: StadiumBorder(),
@@ -184,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
       borderSide:
           BorderSide(color: Colors.white, style: BorderStyle.solid, width: 4),
       onPressed: () {
-        print(Valor);
+        NodoWidget.Imprimir();
       },
     );
   }

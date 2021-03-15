@@ -5,18 +5,14 @@ class InputWidget extends StatefulWidget {
   final textIs;
   InputWidget({this.textIs, this.typeIs});
 
-  void Valor() {
-    _InputWidgetState().UpdateValue();
-    print(_InputWidgetState()._controllerText.text);
-  }
-
+  void Imprimir() => _InputWidgetState().imprimir();
   @override
   _InputWidgetState createState() => _InputWidgetState();
 }
 
 class _InputWidgetState extends State<InputWidget> {
   TextEditingController _controllerText = new TextEditingController();
-  String Valor = "efe";
+  Information information = new Information();
 
   @override
   void initState() {
@@ -27,12 +23,6 @@ class _InputWidgetState extends State<InputWidget> {
   void dispose() {
     _controllerText.dispose();
     super.dispose();
-  }
-
-  void UpdateValue() {
-    print("$_controllerText.text");
-    print(Valor);
-    print("$Valor");
   }
 
   @override
@@ -64,29 +54,11 @@ class _InputWidgetState extends State<InputWidget> {
       height: 30,
       child: TextField(
         controller: _controllerText,
-        onSubmitted: (String value) async {
-          await showDialog<void>(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text('Thanks!'),
-                content: Text(
-                    'You typed "$_controllerText.text", which has length ${value.characters.length}.'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        Valor = "$_controllerText.text";
-                      });
-                      print("$value");
-                      Navigator.pop(context);
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-              );
-            },
-          );
+        onChanged: (value) {
+          setState(() {
+            information.setTextValue(value);
+            print(information.getTextValue());
+          });
         },
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
@@ -97,6 +69,11 @@ class _InputWidgetState extends State<InputWidget> {
         ),
       ),
     );
+  }
+
+  imprimir() {
+    print(information.getTextValue());
+    print(information.textValue);
   }
 }
 
@@ -122,4 +99,15 @@ class TextFieldPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(TextFieldPainter oldDelegate) => true;
+}
+
+class Information {
+  String textValue = "";
+  void setTextValue(String value) {
+    this.textValue = value;
+  }
+
+  String getTextValue() {
+    return this.textValue;
+  }
 }
