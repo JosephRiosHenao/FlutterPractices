@@ -195,8 +195,13 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         setState(() {
           NodoText = _NodoWidget.Valor;
-          print(_NodoWidget.Valor);
+          DireccionText = _DireccionWidget.Valor;
+          AlturaText = _AlturaWidget.Valor;
+          CargaText = _CargaWidget.Valor;
         });
+        generatePDF
+        print(
+            "\nNodo: $NodoText\nDireccion: $DireccionText\nAltura: $AlturaText\nCarga: $CargaText\nBT: $checkBoxBT\nMT: $checkBoxMT");
       },
     );
   }
