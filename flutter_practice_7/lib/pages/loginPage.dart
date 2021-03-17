@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice_7/widgets/inputWidget.dart';
 import 'package:flutter_practice_7/widgets/pdfGenerate.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -11,13 +12,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var locationMessage = "";
+  Position _currentPosition;
+
   bool checkBoxMT = false;
   bool checkBoxBT = false;
-
-  String NodoText = "";
-  String DireccionText = "";
-  String AlturaText = "";
-  String CargaText = "";
 
   controllerPDF PDF = new controllerPDF();
 
@@ -40,6 +39,17 @@ class _LoginPageState extends State<LoginPage> {
     textIs: 'CARGA',
     typeIs: 'a',
   );
+
+  _getCurrentLocation() {
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
 
   @override
   void initState() {
@@ -129,10 +139,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _gpsWidget(BuildContext context) {
-    return Icon(
-      Icons.place,
-      color: Colors.white,
-      size: 70,
+    return GestureDetector(
+      onTap: () async {
+        print("Presiono GPS");
+        await _getCurrentLocation();
+        print("Termino recoleccion de GPS");
+      },
+      child: Icon(
+        Icons.place,
+        color: Colors.white,
+        size: 70,
+      ),
     );
   }
 
@@ -200,15 +217,16 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.fromLTRB(50, 20, 50, 20),
       borderSide:
           BorderSide(color: Colors.white, style: BorderStyle.solid, width: 4),
-      onPressed: () {
-        setState(() {
-          NodoText = _NodoWidget.Valor;
-          DireccionText = _DireccionWidget.Valor;
-          AlturaText = _AlturaWidget.Valor;
-          CargaText = _CargaWidget.Valor;
-        });
-        print(
-            "\nNodo: $NodoText\nDireccion: $DireccionText\nAltura: $AlturaText\nCarga: $CargaText\nBT: $checkBoxBT\nMT: $checkBoxMT");
+      onPressed: () async {
+        await PDF.createPDF(
+            _NodoWidget.Valor,
+            _DireccionWidget.Valor,
+            _AlturaWidget.Valor,
+            _CargaWidget.Valor,
+            _currentPosition.latitude,
+            _currentPosition.longitude,
+            checkBoxMT,
+            checkBoxBT);
       },
     );
   }

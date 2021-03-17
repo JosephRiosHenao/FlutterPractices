@@ -11,11 +11,13 @@ class controllerPDF {
   Uint8List archivoPdf;
 
   Future<void> initPDF() async {
-    archivoPdf = await generarPdf();
+    archivoPdf = await generarPdf("", "", "", "", "", "", "", "");
   }
 
-  Future<void> createPDF() async {
-    archivoPdf = await generarPdf();
+  Future<void> createPDF(
+      nodo, direccion, altura, carga, latitud, longitud, mt, bt) async {
+    archivoPdf = await generarPdf(
+        nodo, direccion, altura, carga, latitud, longitud, mt, bt);
     sharePDF();
   }
 
@@ -23,7 +25,8 @@ class controllerPDF {
     await Printing.sharePdf(bytes: archivoPdf, filename: 'Documento.pdf');
   }
 
-  Future<Uint8List> generarPdf() async {
+  Future<Uint8List> generarPdf(
+      nodo, direccion, altura, carga, latitud, longitud, mt, bt) async {
     print("Generado");
     pdf = pw.Document();
 
@@ -36,7 +39,7 @@ class controllerPDF {
             padding: pw.EdgeInsets.symmetric(vertical: 20),
             child: pw.Center(
               child: pw.Text(
-                'NADA',
+                'Reporte poste #$nodo',
                 style: pw.TextStyle(
                   fontSize: 30,
                   color: PdfColors.blue,
@@ -54,7 +57,7 @@ class controllerPDF {
               horizontal: 20,
             ),
             child: pw.Text(
-              '',
+              'Nodo: $nodo\nDireccion: $direccion\nAltura: $altura\nCarga: $carga\nMT: $mt\nBT: $bt\n\n--GPS--\nLatidud: $latitud\nLongitud: $longitud',
               style: pw.TextStyle(
                 fontSize: 20,
               ),
