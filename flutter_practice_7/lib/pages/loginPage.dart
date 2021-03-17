@@ -199,7 +199,6 @@ class _LoginPageState extends State<LoginPage> {
           AlturaText = _AlturaWidget.Valor;
           CargaText = _CargaWidget.Valor;
         });
-        generatePDF
         print(
             "\nNodo: $NodoText\nDireccion: $DireccionText\nAltura: $AlturaText\nCarga: $CargaText\nBT: $checkBoxBT\nMT: $checkBoxMT");
       },
