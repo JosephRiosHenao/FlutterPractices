@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_7/widgets/inputWidget.dart';
+import 'package:flutter_practice_7/widgets/pdfGenerate.dart';
 import 'package:getwidget/getwidget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   String DireccionText = "";
   String AlturaText = "";
   String CargaText = "";
+
+  controllerPDF PDF = new controllerPDF();
 
   InputWidget _NodoWidget = new InputWidget(
     textIs: 'NODO',
@@ -37,6 +40,11 @@ class _LoginPageState extends State<LoginPage> {
     textIs: 'CARGA',
     typeIs: 'a',
   );
+
+  @override
+  void initState() {
+    PDF.initPDF();
+  }
 
   @override
   Widget build(BuildContext context) {
