@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_practice_9/pages/favoriteWordsPage.dart';
 import 'package:flutter_practice_9/pages/homePage.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
