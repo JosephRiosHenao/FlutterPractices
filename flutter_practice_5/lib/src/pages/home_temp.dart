@@ -9,7 +9,7 @@ class HomePageTemp extends StatelessWidget {
         title: Text('ListView Component'),
         centerTitle: true,
       ),
-      body: ListView(children: _createItems()),
+      body: ListView(children: _createItemsV2()),
     );
   }
 
@@ -29,5 +29,27 @@ class HomePageTemp extends StatelessWidget {
       ));
     }
     return lista;
+  }
+
+  List<Widget> _createItemsV2() {
+    return options.map((e) {
+      return Column(
+        children: [
+          ListTile(
+            title: Center(child: Text(e + '!')),
+            leading: Icon(Icons.arrow_back),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {},
+          ),
+          Divider(
+            color: Colors.blue,
+            height: 10,
+            thickness: 2.5,
+            endIndent: 100,
+            indent: 100,
+          ),
+        ],
+      );
+    }).toList();
   }
 }
