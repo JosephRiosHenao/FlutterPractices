@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_5/src/providers/menu_provider.dart';
+import 'package:flutter_practice_5/src/utils/icon_string_util.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -30,6 +31,15 @@ class HomePage extends StatelessWidget {
   List<Widget> _listaItems(List<dynamic> data) {
     final List<Widget> opciones = [];
 
-    data.forEach((opt) {});
+    data.forEach((opt) {
+      final widgetTemp = ListTile(
+        title: Text(opt['texto']),
+        leading: getIcon(opt['icon']),
+        trailing: Icon(Icons.arrow_forward_ios_outlined, color: Colors.blue),
+        onTap: () {},
+      );
+      opciones.add(widgetTemp);
+    });
+    return opciones;
   }
 }
